@@ -44,20 +44,24 @@ export const editPhrase = async (req: Request, res: Response) => {
     }
 };
 
-export const deletePhrase = async ( req:Request,res:Response)=>{
-    let {id} = req.params
+export const deletePhrase = async (req: Request, res: Response) => {
+    let { id } = req.params;
 
     let deletePhrases = await Phrase.destroy({
-        where:{id}
-    })
-    res.json({deletePhrases})
-}
+        where: { id },
+    });
+    res.json({ deletePhrases });
+};
 
-export const randomGet = async(req:Request,res:Response)=>{
+export const randomGet = async (req: Request, res: Response) => {
     let phrase = await Phrase.findOne({
-        order:[
-            Sequelize.fn("RANDOM")
-        ]
-    })
-    res.json({phrase})
-}
+        order: [Sequelize.fn('RANDOM')],
+    });
+    res.json({ phrase });
+};
+
+export const uploadFile = async (req: Request, res: Response) => {
+    console.log('AVATAR', req.file);
+    console.log('GALLERY', req.files);
+    res.json({});
+};
